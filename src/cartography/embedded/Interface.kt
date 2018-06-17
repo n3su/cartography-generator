@@ -23,7 +23,7 @@ class Interface : StackPane(), Initializable
      * Controller that will be assigned to
      * [FXMLLoader].
      */
-    val controller = Controller()
+    private val controller: Controller
 
     /**
      * Object property of Node.
@@ -32,14 +32,13 @@ class Interface : StackPane(), Initializable
 
     init
     {
-        val using = FXMLLoader().apply {
-            setController(controller)
-        }
+        val using = FXMLLoader()
+        controller = Controller()
+        using.setController(controller)
 
         val hierarchy: Node? = using.load(Resources.getAsStream("layout/Window.fxml")) ?:
                 throw ExceptionInInitializerError("[Interface] Could not create embedded interface.")
 
-        Execution.delayUntil({ hierarchy != null }, 1000, 5000)
         DEBUG("[Interface] Hierarchy node loaded.")
         property = SimpleObjectProperty<Node>(hierarchy)
     }
