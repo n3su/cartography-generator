@@ -21,12 +21,6 @@ fun ERROR(message: String): Unit = Environment.getLogger().run { severe(message)
 fun EXIT(message: String = "Bot terminated."): Unit = Environment.getBot().run { stop(message) }
 
 /* ------------------------------ ------------------------------ */
-// RuneMate environment functions.
-/* ------------------------------ ------------------------------ */
-
-
-
-/* ------------------------------ ------------------------------ */
 // Area and coordinate extensions.
 /* ------------------------------ ------------------------------ */
 

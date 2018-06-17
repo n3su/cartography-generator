@@ -1,16 +1,9 @@
 package cartography
 
-import cartography.embedded.Interface
+import cartography.embedded.Controller
 import cartography.shared.Settings
 import cartography.shared.Store
 import cartography.util.CATCH_STRICT
-import com.runemate.game.api.client.ClientUI
-import com.runemate.game.api.client.embeddable.EmbeddableUI
-import com.runemate.game.api.hybrid.Environment
-import com.runemate.game.api.script.Execution
-import com.runemate.game.api.script.framework.AbstractBot
-import javafx.beans.property.ObjectProperty
-import javafx.scene.Node
 
 /**
  * Application core class controlling
@@ -18,12 +11,6 @@ import javafx.scene.Node
  */
 open class Application
 {
-    /**
-     * Current bot instance.
-     */
-    val robot: AbstractBot
-        get() = Environment.getBot()
-
     /**
      * Session data.
      */
@@ -35,19 +22,20 @@ open class Application
     val settings: Settings = Settings()
 
     /**
-     * Embedded interface handle.
+     * Embedded interface controller.
      */
-    lateinit var embedded: Interface
+    val embedded: Controller = Controller()
 
     /**
      * Application initialization function called
      * after successful injection into game.
      */
-    fun launch() = CATCH_STRICT {
-        embedded = Interface()
+    fun launch(robot: Boot) = CATCH_STRICT {
+        robot.embeddableUI = robot
     }
 
-    fun getInterfaceProperty(): ObjectProperty<Node>? = embedded.property
-
+    /**
+     * Companion object with class initializer.
+     */
     companion object : Application()
 }
