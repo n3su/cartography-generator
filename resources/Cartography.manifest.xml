@@ -20,7 +20,5 @@
     <access>public</access>
     <resources>
         <resource>layout/Window.fxml</resource>
-        <resource>layout/Blegh.fxml</resource>
-        <resource>layout/slayerUI.fxml</resource>
     </resources>
 </manifest>
