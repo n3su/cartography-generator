@@ -1,9 +1,14 @@
 package cartography
 
-import cartography.embedded.Controller
+import cartography.embedded.Component
+import cartography.embedded.components.ApplicationComponent
 import cartography.shared.Settings
 import cartography.shared.Store
 import cartography.util.CATCH_STRICT
+import cartography.util.DEBUG
+import javafx.beans.property.ObjectProperty
+import javafx.fxml.FXMLLoader
+import javafx.scene.Node
 
 /**
  * Application core class controlling
@@ -20,11 +25,6 @@ open class Application
      * Session settings.
      */
     val settings: Settings = Settings()
-
-    /**
-     * Embedded interface controller.
-     */
-    val embedded: Controller = Controller()
 
     /**
      * Application initialization function called
