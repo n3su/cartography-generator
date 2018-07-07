@@ -1,22 +1,18 @@
 <manifest>
     <main-class>cartography.Boot</main-class>
     <name>Cartography</name>
-    <tag-line>.</tag-line><!--Max of 50 chars-->
-    <description>.</description><!--Max of 110 chars-->
+    <tag-line>.</tag-line>
+    <description>.</description>
     <version>1.0</version>
     <compatibility>
         <game>OSRS</game>
-        <!--Can be used if you absolutely need to disable DarkScape (highly discouraged)-->
-        <!--<disable-game>DARK</disable-game>-->
     </compatibility>
     <categories>
         <category>OTHER</category>
     </categories>
-    <!--Required to publish on the bot store-->
     <internal-id>lt.monad.cartography</internal-id>
-    <!--The rest are optional-->
     <open-source>true</open-source>
-    <hidden>false</hidden> <!--If you need to hide it from the bot store for maintenance-->
+    <hidden>false</hidden>
     <access>public</access>
     <resources>
         <resource>layout/Window.fxml</resource>

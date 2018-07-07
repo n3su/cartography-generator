@@ -11,11 +11,6 @@ import kotlin.properties.Delegates
  */
 open class Settings
 {
-    /*
-    * Scan radius.
-    * */
-    val radius: Int = 52
-
     /**
      * File chooser default directory for saving
      * or opening SerializableWeb files.

@@ -12,18 +12,6 @@ import java.io.ObjectOutputStream
 
 object Export
 {
-    fun funkcija() {
-
-    }
-
-    // ar
-
-
-    fun funkcija2()
-    {
-
-    }
-
     fun save(): FileChooser
     {
         val chooser: FileChooser = FileChooser()
@@ -43,8 +31,6 @@ object Export
             return
         }
 
-        var edges = 0
-
         for (vertex in serializable.vertices)
         {
             val center = vertex.position
@@ -59,7 +45,6 @@ object Export
                 if (collision.passable(surrounding)) {
                     val vsur = serializable.getFirstVertexOn(surrounding) ?: continue
                     vertex.addBidirectionalEdge(vsur)
-                    edges += 1
                 }
             }
         }
@@ -71,7 +56,6 @@ object Export
         }
 
         serializable.vertices.removeAll(invalidated)
-        DEBUG("Written $edges edges.")
         serializable.writeExternal(ObjectOutputStream(write.outputStream()))
     }
 }

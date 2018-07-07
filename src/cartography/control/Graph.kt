@@ -40,7 +40,6 @@ object Graph
 
     /**
      * Create edges for scanned vertices.
-     * TODO: Oj lmao
      */
     private fun surroundings() {
         val visual = Store.visual

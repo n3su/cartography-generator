@@ -53,6 +53,5 @@ class Boot : LoopingBot(), EmbeddableUI
                 }
             }
         }
-
     }
 }
