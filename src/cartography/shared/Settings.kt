@@ -1,13 +1,15 @@
 package cartography.shared
 
-import cartography.Application
+import cartography.util.settings
+import com.runemate.game.api.hybrid.Environment
 import java.io.File
+import kotlin.properties.Delegates
 
 /**
  * Class for storing settings adjustable
  * in user interface.
  */
-class Settings
+open class Settings
 {
     /*
     * Scan radius.
@@ -16,19 +18,11 @@ class Settings
 
     /**
      * File chooser default directory for saving
-     * SerializableWeb files.
+     * or opening SerializableWeb files.
      *
      * Overwrite every time new location is chosen.
      */
-    val directory = File("C:\\")
+    var directory = File(".")
 
-    companion object
-    {
-        /**
-         * Settings class accessor. Uses initialized
-         * object in [Application] class.
-         */
-        operator fun <R : Any?> invoke(body: Settings.() -> R?): R? = Application.settings.run(body) ?:
-            throw UninitializedPropertyAccessException("Cannot access settings when Application is not initialized.")
-    }
+    companion object : Settings()
 }
