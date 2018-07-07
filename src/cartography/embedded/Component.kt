@@ -30,7 +30,7 @@ abstract class Component(resource: String)
     abstract fun created()
 
     /**
-     *
+     *  Get top level window within which a scene is hosted.
      */
     protected fun window(): Window {
         return property.get().scene.window
@@ -43,7 +43,13 @@ abstract class Component(resource: String)
     private fun <T : Any> getElement(key: String): T = document.namespace[key] as T?
             ?: throw ExceptionInInitializerError("[Interface] Could not retrieve element named $key.")
 
+    /**
+     * Useless nonsense.
+     */
     protected fun <T : Any> using(fxid: String): T = getElement(fxid)
 
+    /**
+     * Useless nonsense.
+     */
     protected infix fun Button.clicked(event: (MouseEvent) -> Unit) = setOnMouseClicked { event.invoke(it) }
 }

@@ -11,6 +11,9 @@ import java.io.File
 
 object Import
 {
+    /**
+     * Create and configure JavaFX [FileChooser].
+     */
     fun load(): FileChooser
     {
         val chooser = FileChooser()
@@ -20,6 +23,9 @@ object Import
         return chooser
     }
 
+    /**
+     * Read given file and create visualisation graph.
+     */
     fun selected(load: File)
     {
         val serializable = SerializableWeb.deserialize(load.readBytes())

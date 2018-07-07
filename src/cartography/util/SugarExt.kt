@@ -19,8 +19,6 @@ fun contract(condition: Boolean, call: () -> Unit) {
     run(call)
 }
 
-fun Boolean.expect(value: Boolean = true, call: () -> Unit) = contract(this == value, call)
-
 /* ------------------------------ ------------------------------ */
 // ?? ? ? ? ? ?? ? ? ? ? ? ???
 /* ------------------------------ ------------------------------ */

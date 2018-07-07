@@ -15,6 +15,9 @@ import java.io.File
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+/**
+ * Main application component.
+ */
 @Suppress("UNUSED_PARAMETER")
 open class ApplicationComponent : Component("layout/Window.fxml")
 {

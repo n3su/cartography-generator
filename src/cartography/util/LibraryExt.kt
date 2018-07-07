@@ -10,12 +10,6 @@ import kotlin.math.abs
 import kotlin.math.atan2
 
 /* ------------------------------ ------------------------------ */
-// Environment class helper functions.
-/* ------------------------------ ------------------------------ */
-
-fun settings() = Environment.getBot().settings
-
-/* ------------------------------ ------------------------------ */
 // Collision related flags.
 /* ------------------------------ ------------------------------ */
 

@@ -17,11 +17,6 @@ open class Application
      */
     fun launch(robot: Boot) = CATCH_STRICT {
         robot.embeddableUI = robot
-
-        DEBUG("${Players.getLocal()} - ${Players.getLocal().hashCode()}")
-        for (surrounding in Players.getLocal().position.surroundings) {
-            DEBUG("$surrounding - ${surrounding.hashCode()}")
-        }
     }
 
     /**

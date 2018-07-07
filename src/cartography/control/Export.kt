@@ -12,6 +12,9 @@ import java.io.ObjectOutputStream
 
 object Export
 {
+    /**
+     * Create and configure JavaFX [FileChooser].
+     */
     fun save(): FileChooser
     {
         val chooser: FileChooser = FileChooser()
@@ -21,6 +24,9 @@ object Export
         return chooser
     }
 
+    /**
+     * Process cached vertices and serialize to provided file.
+     */
     fun selected(write: File)
     {
         val serializable = Store.serializable

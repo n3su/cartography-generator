@@ -14,10 +14,10 @@ object Graph
 {
     const val DEFAULT_NODE_STYLE = "shape: diamond; size: 4px;"
 
-    @Suppress("FunctionName")
     /**
      * Create node with required attributes.
      */
+    @Suppress("FunctionName")
     fun create_node(coordinate: Coordinate) = contract(Store.visual.getNode<Node>(coordinate.id.toString()) == null) {
         val node = Store.visual.addNode<Node>(coordinate.id.toString())
         node.addAttribute("layout.frozen")
@@ -76,7 +76,7 @@ object Graph
     }
 
     /**
-     * Display rendered graph.
+     * Display graph.
      */
     private fun display() {
         Store.visual.run {
