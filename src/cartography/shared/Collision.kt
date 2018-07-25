@@ -22,11 +22,7 @@ class Collision
     /**
      * Function that calculates collision based on given coordinate.
      *
-     * @return false if object's coordinate is completely blocked off.
-     * @return false if calculated direction was invalid value or if there
-     * was collision on that direction.
-     * @return true if calculated direction was valid and if there was
-     * no collision on that direction.
+     * @return [Boolean]
      */
     fun passable(to: Coordinate): Boolean {
         if (impassable())
@@ -47,13 +43,5 @@ class Collision
         }
 
         fun get(coordinate: Coordinate) = Store.cache[coordinate.id] ?: INVALID_COLLISION
-
-        fun create(coordinate: Coordinate, cf: Int): Collision
-        {
-            return Collision().apply {
-                this.coordinate = coordinate
-                this.collision = cf
-            }
-        }
     }
 }
