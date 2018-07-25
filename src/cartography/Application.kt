@@ -1,9 +1,8 @@
 package cartography
 
+import cartography.shared.Store
 import cartography.util.CATCH_STRICT
-import cartography.util.DEBUG
-import cartography.util.surroundings
-import com.runemate.game.api.hybrid.region.Players
+import com.runemate.game.api.hybrid.region.Region
 
 /**
  * Application core class controlling
@@ -16,7 +15,9 @@ open class Application
      * after successful injection into game.
      */
     fun launch(robot: Boot) = CATCH_STRICT {
+        Region.cacheCollisionFlags(true)
         robot.embeddableUI = robot
+        Store.reset()
     }
 
     /**

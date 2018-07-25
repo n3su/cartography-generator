@@ -6,9 +6,11 @@ import cartography.util.id
 import cartography.util.not_null
 import cartography.util.surroundings
 import com.runemate.game.api.hybrid.location.Coordinate
+import com.runemate.game.api.hybrid.location.navigation.web.vertex_types.CoordinateVertex
 import org.graphstream.graph.Edge
 import org.graphstream.graph.Node
 import org.graphstream.ui.view.Viewer
+import java.util.*
 
 object Graph
 {
@@ -32,9 +34,10 @@ object Graph
      * and their edges.
      */
     fun visualise() {
-        if (!Store.cache.isEmpty())
-            surroundings()
+        if (Store.cache.isEmpty())
+            return
 
+        surroundings()
         display()
     }
 
@@ -58,18 +61,11 @@ object Graph
 
             // Filter out coordinates that does not have corresponding node
             // or already has edge with center node.
-            val filtered = surroundings.filter {
+            surroundings.filter {
                 c -> visual.getNode<Node>(c.id.toString())?.let { !it.hasEdgeBetween(node) } ?: false
-            }.map { c -> visual.getNode<Node>(c.id.toString())!! to c }
-
-            if (filtered.isEmpty())
-                continue
-
-            for (pair in filtered)
-            {
-                val (_, target) = pair
-                if (collision!!.passable(target)) {
-                    visual.addEdge<Edge>("{$coordinate.id} to {${target.id}", coordinate.id.toString(), target.id.toString())
+            }.forEach {
+                if (collision!!.passable(it)) {
+                    visual.addEdge<Edge>("{$coordinate.id} to {${it.id}", coordinate.id.toString(), it.id.toString())
                 }
             }
         }

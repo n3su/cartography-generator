@@ -18,7 +18,7 @@ open class Store
      * Graph for data visualisation.
      * Used to store collected vertices and edges.
      */
-    var visual: MultiGraph = MultiGraph("Cartography")
+    var visual: MultiGraph = MultiGraph("Cartography", true, false, 10816, 43264)
 
     /**
      * RuneMate serializable web object.
@@ -38,7 +38,7 @@ open class Store
     fun reset() {
         Store.active = false
         Store.cache = HashMap()
-        Store.visual = MultiGraph("Cartography")
+        Store.visual = MultiGraph("Cartography", true, false, 10816, 43264)
         Store.serializable = SerializableWeb()
     }
 

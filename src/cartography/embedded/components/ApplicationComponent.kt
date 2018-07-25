@@ -26,7 +26,7 @@ open class ApplicationComponent : Component("layout/Window.fxml")
     override fun created() {
         events()
         message("Application started.")
-        message("Using default refresh rate (1000ms).")
+        message("Using default refresh rate (500ms).")
     }
 
     private fun events() {
@@ -53,8 +53,6 @@ open class ApplicationComponent : Component("layout/Window.fxml")
         Store.active = false
         message("Application stopped reading coordinates.")
         message("Collision object cache contains ${Store.cache.size} elements.")
-        message("Visualisation graph contains ${Store.visual.nodeCount} nodes.")
-        message("")
     }
 
     private fun cleared(event: MouseEvent) {

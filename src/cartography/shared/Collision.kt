@@ -5,6 +5,7 @@ import cartography.util.Direction
 import cartography.util.direction
 import cartography.util.id
 import com.runemate.game.api.hybrid.location.Coordinate
+import com.runemate.game.api.hybrid.region.Region.CollisionFlags.HelperFlags.BLOCKED_OFF
 
 class Collision
 {
@@ -35,7 +36,7 @@ class Collision
         return collision.and(cf) == 0
     }
 
-    fun impassable(): Boolean = collision.and(BLOCK_MOVEMENT_FULL) != 0
+    fun impassable(): Boolean = collision.and(BLOCKED_OFF) != 0
     fun valid(): Boolean = collision != INVALID_COLLISION.collision
 
     companion object
@@ -46,5 +47,13 @@ class Collision
         }
 
         fun get(coordinate: Coordinate) = Store.cache[coordinate.id] ?: INVALID_COLLISION
+
+        fun create(coordinate: Coordinate, cf: Int): Collision
+        {
+            return Collision().apply {
+                this.coordinate = coordinate
+                this.collision = cf
+            }
+        }
     }
 }

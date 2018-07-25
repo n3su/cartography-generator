@@ -1,10 +1,9 @@
 package cartography
 
+import cartography.control.Graph
 import cartography.embedded.components.ApplicationComponent
 import cartography.shared.Collision
 import cartography.shared.Store
-import cartography.control.Graph
-import cartography.util.contract
 import cartography.util.id
 import com.runemate.game.api.client.embeddable.EmbeddableUI
 import com.runemate.game.api.hybrid.location.navigation.web.vertex_types.CoordinateVertex
@@ -20,7 +19,7 @@ class Boot : LoopingBot(), EmbeddableUI
 
     override fun onStart(vararg args: String?) {
         Application.launch(this)
-        setLoopDelay(1000)
+        setLoopDelay(600)
     }
 
     override fun onLoop()
@@ -34,24 +33,50 @@ class Boot : LoopingBot(), EmbeddableUI
         if (coordinates.isEmpty() || collisions.isEmpty())
             return
 
+        val cache = Store.cache
+
         for (x in 0..103)
         {
             for (y in 0..103)
             {
                 val flag = collisions[x][y]
                 val byIndex = if (x == 0) y else x * 104 + y
-                val coordinate = coordinates[byIndex] ?: continue
+                val coordinate = coordinates[byIndex] ?: break
 
-                val co = Collision().apply {
-                    this.coordinate = coordinate
-                    this.collision = flag
+                if (cache.containsKey(coordinate.id))
+                {
+                    val retrieve = cache[coordinate.id]!!
+
+                    if (retrieve.impassable())
+                    {
+                        retrieve.collision = flag
+                        cache.replace(coordinate.id, retrieve)
+                        if (!retrieve.impassable()) {
+                            Graph.create_node(coordinate)
+                            Store.serializable.addVertex(CoordinateVertex(coordinate, Collections.emptyList()))
+                        }
+                    }
                 }
+                else
+                {
+                    val collide = Collision().apply {
+                        this.coordinate = coordinate
+                        collision = flag
+                    }
 
-                if (Store.cache.putIfAbsent(coordinate.id, co) == null && !co.impassable()) {
-                    Graph.create_node(coordinate)
-                    Store.serializable.addVertex(CoordinateVertex(coordinate, Collections.emptyList()))
+                    cache.putIfAbsent(
+                        coordinate.id,
+                        collide
+                    )
+
+                    if (!collide.impassable()) {
+                        Graph.create_node(coordinate)
+                        Store.serializable.addVertex(CoordinateVertex(coordinate, Collections.emptyList()))
+                    }
                 }
             }
         }
     }
+
+
 }

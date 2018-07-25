@@ -1,6 +1,5 @@
 package cartography.shared
 
-import cartography.util.settings
 import com.runemate.game.api.hybrid.Environment
 import java.io.File
 import kotlin.properties.Delegates
